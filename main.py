@@ -68,6 +68,7 @@ if load_button:
         st.write("error reading the context: "+ str(e))
 else:
     st.write("waiting for the website")
+    index = ''
 
 
 if index == "":
