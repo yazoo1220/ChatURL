@@ -59,7 +59,8 @@ if url:
     # st.image(img)
     documents = loader.load_data(urls=[url])
     ask_button = st.button('ask')
-    index = GPTSimpleVectorIndex.from_documents(documents)else:
+    index = GPTSimpleVectorIndex.from_documents(documents)
+else:
     st.write('please paste url') 
 
 
