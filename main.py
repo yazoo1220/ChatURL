@@ -52,7 +52,7 @@ url = st.text_input("URL 🔗")
 import webshot
 
 # webshot.config.screenshot_path = '/path/to/save/screenshot'
-
+ask_button = False
 
 if url:
     # img = webshot.url(url)
@@ -70,7 +70,6 @@ def get_text(prompt):
 
 
 user_input = get_text("この記事の要点を3つにまとめてください")
-ask_button = False
 
 if ask_button:
     with st.spinner('typing...'):
