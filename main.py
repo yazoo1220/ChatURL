@@ -69,7 +69,7 @@ def get_text(prompt):
 
 load_button = st.button('read')
 user_input = get_text("この記事の要点を3つにまとめてください")
-
+ask_button = False
 
 if load_button:
     try:
