@@ -67,7 +67,7 @@ def get_text():
 col1, col2= st.columns(2)
 user_input = get_text()
 load_button = col1.button('read')
-
+ask_button = False
 
 if load_button:
     try:
@@ -79,7 +79,6 @@ if load_button:
 else:
     st.write("waiting for the website")
     index = ''
-
 
 
 if ask_button:
