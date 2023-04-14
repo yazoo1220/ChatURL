@@ -48,7 +48,15 @@ BeautifulSoupWebReader = download_loader("BeautifulSoupWebReader")
 loader = BeautifulSoupWebReader()
 
 url = st.text_input("URL 🔗")
+
+import webshot
+
+webshot.config.screenshot_path = '/path/to/save/screenshot'
+
+
 if url:
+    img = webshot.url(url)
+    st.write(img)
     documents = loader.load_data(urls=[url])
 else:
     st.write('please paste url') 
