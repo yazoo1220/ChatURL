@@ -71,8 +71,9 @@ load_button = col1.button('read')
 
 if load_button:
     try:
-        index = GPTSimpleVectorIndex.from_documents(documents)
         ask_button = col2.button('ask')
+        index = GPTSimpleVectorIndex.from_documents(documents)
+        
     except Exception as e:
         st.write("error reading the context: "+ str(e))
 else:
@@ -82,12 +83,12 @@ else:
 
 
 if ask_button:
-    pass
-else:
     with st.spinner('typing...'):
         output = index.query(user_input)
         st.session_state.past.append(user_input)
         st.session_state.generated.append(output.response)
+else:
+    pass
 
 
 if st.session_state["generated"]:
