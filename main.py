@@ -64,14 +64,15 @@ def get_text():
     input_text = st.text_input("You: ", "この要点を3つまとめてください。回答は日本語でお願いします。", key="input")
     return input_text
 
-
+col1, col2= st.columns(2)
 user_input = get_text()
-load_button = st.button('ask')
+load_button = col1.button('read')
 
 
 if load_button:
     try:
         index = GPTSimpleVectorIndex.from_documents(documents)
+        ask_button = col2.button('ask')
     except Exception as e:
         st.write("error reading the context: "+ str(e))
 else:
@@ -79,7 +80,8 @@ else:
     index = ''
 
 
-if index == "":
+
+if ask_button:
     pass
 else:
     with st.spinner('typing...'):
