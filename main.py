@@ -41,7 +41,7 @@ if os.environ['OPENAI_API_KEY']!="":
 else:
     st.write("waiting for api token...")
 
-from llama_index import download_loader
+from llama_index import download_loader,GPTSimpleVectorIndex
 
 BeautifulSoupWebReader = download_loader("BeautifulSoupWebReader")
 
