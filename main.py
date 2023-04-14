@@ -84,6 +84,7 @@ else:
 
 
 if ask_button:
+    load_button = True
     with st.spinner('typing...'):
         output = index.query(user_input)
         st.session_state.past.append(user_input)
