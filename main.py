@@ -60,17 +60,20 @@ if url:
     documents = loader.load_data(urls=[url])
 else:
     st.write('please paste url') 
-def get_text():
-    input_text = st.text_input("You: ", "この要点を3つまとめてください。回答は日本語でお願いします。", key="input")
+
+
+def get_text(prompt):
+    input_text = st.text_input("You: ", prompt, key="input")
     return input_text
+
 
 col1, col2= st.columns(2)
 user_input = get_text()
 load_button = col1.button('read')
-ask_button = col2.button('ask')
 
 if load_button:
     try:
+        ask_button = col2.button('ask')
         index = GPTSimpleVectorIndex.from_documents(documents)
         
     except Exception as e:
@@ -80,7 +83,7 @@ else:
     index = ''
 
 
-if ask_button:
+if (ask_button) and (index!=''):
     with st.spinner('typing...'):
         output = index.query(user_input)
         st.session_state.past.append(user_input)
