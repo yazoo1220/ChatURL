@@ -67,8 +67,9 @@ def get_text(prompt):
     return input_text
 
 
-user_input = get_text("この記事の要点を3つにまとめてください")
 load_button = st.button('read')
+user_input = get_text("この記事の要点を3つにまとめてください")
+
 
 if load_button:
     try:
@@ -82,7 +83,7 @@ else:
     index = ''
 
 
-if (ask_button) and (index!=''):
+if (ask_button):
     with st.spinner('typing...'):
         output = index.query(user_input)
         st.session_state.past.append(user_input)
