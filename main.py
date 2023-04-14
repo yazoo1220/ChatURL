@@ -58,7 +58,8 @@ if url:
     # img = webshot.url(url)
     # st.image(img)
     documents = loader.load_data(urls=[url])
-else:
+    ask_button = st.button('ask')
+    index = GPTSimpleVectorIndex.from_documents(documents)else:
     st.write('please paste url') 
 
 
@@ -67,21 +68,8 @@ def get_text(prompt):
     return input_text
 
 
-load_button = st.button('read')
 user_input = get_text("この記事の要点を3つにまとめてください")
 ask_button = False
-
-if load_button:
-    try:
-        ask_button = st.button('ask')
-        index = GPTSimpleVectorIndex.from_documents(documents)
-        
-    except Exception as e:
-        st.write("error reading the context: "+ str(e))
-else:
-    st.write("waiting for the website")
-    index = ''
-
 
 if ask_button:
     with st.spinner('typing...'):
