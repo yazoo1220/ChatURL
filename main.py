@@ -68,7 +68,7 @@ def get_text(prompt):
 
 
 col1, col2= st.columns(2)
-user_input = get_text()
+user_input = get_text("この記事の要点を3つにまとめてください")
 load_button = col1.button('read')
 
 if load_button:
