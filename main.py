@@ -67,13 +67,12 @@ def get_text(prompt):
     return input_text
 
 
-col1, col2= st.columns(2)
 user_input = get_text("この記事の要点を3つにまとめてください")
-load_button = col1.button('read')
+load_button = st.button('read')
 
 if load_button:
     try:
-        ask_button = col2.button('ask')
+        ask_button = st.button('ask')
         index = GPTSimpleVectorIndex.from_documents(documents)
         
     except Exception as e:
