@@ -67,11 +67,10 @@ def get_text():
 col1, col2= st.columns(2)
 user_input = get_text()
 load_button = col1.button('read')
-ask_button = False
+ask_button = col2.button('ask')
 
 if load_button:
     try:
-        ask_button = col2.button('ask')
         index = GPTSimpleVectorIndex.from_documents(documents)
         
     except Exception as e:
