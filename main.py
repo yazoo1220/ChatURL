@@ -16,9 +16,9 @@ if "past" not in st.session_state:
 
 
 api_token = st.text_input('OpenAI API Token',type="password")
-submit_button = st.button('authorize')
+st.session_state['authorized'] = st.button('authorize')
 
-if submit_button:
+if st.session_state['authorized']:
     if api_token:
         os.environ['OPENAI_API_KEY'] = api_token
         st.write('authorized.')
