@@ -48,12 +48,12 @@ BeautifulSoupWebReader = download_loader("BeautifulSoupWebReader")
 loader = BeautifulSoupWebReader()
 
 url = st.text_input("URL 🔗")
-if video_url:
+if url:
     documents = loader.load_data(urls=[url])
 else:
     st.write('please paste url') 
 def get_text():
-    input_text = st.text_input("You: ", "この動画の要点を3つまとめてください。回答は日本語でお願いします。", key="input")
+    input_text = st.text_input("You: ", "この要点を3つまとめてください。回答は日本語でお願いします。", key="input")
     return input_text
 
 
