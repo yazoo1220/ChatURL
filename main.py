@@ -56,7 +56,7 @@ webshot.config.screenshot_path = '/path/to/save/screenshot'
 
 if url:
     img = webshot.url(url)
-    st.write(img)
+    st.image(img)
     documents = loader.load_data(urls=[url])
 else:
     st.write('please paste url') 
