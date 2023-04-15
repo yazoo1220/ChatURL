@@ -69,7 +69,7 @@ from llama_index import GPTPineconeIndex, ServiceContext, PromptHelper, GPTSimpl
 
 max_input_size = 3000
 num_output = 3000
-chunk_size_limit = 1000
+chunk_size_limit = 3000
 max_chunk_overlap = 20
 
 prompt_helper = PromptHelper(
