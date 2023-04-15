@@ -83,8 +83,7 @@ import pinecone
 # Pinecone
 api_key = os.environ['PINECONE_API_KEY']
 pinecone.init(api_key=api_key, environment="us-east1-gcp")
-pinecone.create_index("quickstart", dimension=1536, metric="dotproduct", pod_type="p1")
-pinecone_index = pinecone.Index("quickstart")
+pinecone_index = pinecone.Index("default")
 
 if url:
     # img = webshot.url(url)
