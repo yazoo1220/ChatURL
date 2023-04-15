@@ -78,12 +78,23 @@ prompt_helper = PromptHelper(
 
 service_context = ServiceContext.from_defaults(prompt_helper=prompt_helper)
 
+import pinecone
+
+# Pinecone
+api_key = os.environ['PINECONE_API_KEY']
+pinecone.init(api_key=api_key, environment="us-east1-gcp")
+pinecone.create_index("quickstart", dimension=1536, metric="dotproduct", pod_type="p1")
+pinecone_index = pinecone.Index("quickstart")
+
 if url:
     # img = webshot.url(url)
     # st.image(img)
     documents = loader.load_data(urls=[url])
     ask_button = st.button('ask')
-    index = GPTPineconeIndex(index_name="default").from_documents(documents, service_context=service_context)
+    index = GPTPineconeIndex.from_documents(
+        documents, 
+        pinecone_index=pinecone_index,
+        service_context=service_context)
 else:
     st.write('please paste url') 
 
