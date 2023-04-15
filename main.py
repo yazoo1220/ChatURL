@@ -68,7 +68,7 @@ additional_prompt = "あなたは優秀な解説者です。丁寧かつフレ�
 from llama_index import GPTPineconeIndex, ServiceContext, PromptHelper, GPTSimpleVectorIndex
 
 max_input_size = 3000
-num_output = 3000
+num_output = 1500
 chunk_size_limit = 3000
 max_chunk_overlap = 20
 
