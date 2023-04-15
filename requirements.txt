@@ -3,4 +3,4 @@ langchain
 streamlit
 streamlit_chat
 webshot
-pinecone
+pinecone-client
