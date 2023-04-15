@@ -83,7 +83,7 @@ if url:
     # st.image(img)
     documents = loader.load_data(urls=[url])
     ask_button = st.button('ask')
-    index = GPTPineconeIndex.from_documents(documents, service_context=service_context, index_name="default")
+    index = GPTPineconeIndex(index_name="default").from_documents(documents, service_context=service_context)
 else:
     st.write('please paste url') 
 
