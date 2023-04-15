@@ -6,8 +6,8 @@ import os
 from langchain.chains import ConversationChain
 from langchain.llms import OpenAI
 
-import pinecone
-pinecone.delete_index("chaturl")
+# import pinecone
+# pinecone.delete_index("chaturl")
 
 st.set_page_config(page_title="ChatURL", page_icon=":robot:")
 st.header("▶️ ChatURL")
