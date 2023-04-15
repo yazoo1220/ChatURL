@@ -6,7 +6,6 @@ import os
 from langchain.chains import ConversationChain
 from langchain.llms import OpenAI
 
-pinecone.delete_index("chaturl")
 
 st.set_page_config(page_title="ChatURL", page_icon=":robot:")
 st.header("▶️ ChatURL")
@@ -81,7 +80,7 @@ prompt_helper = PromptHelper(
 service_context = ServiceContext.from_defaults(prompt_helper=prompt_helper)
 
 import pinecone
-
+pinecone.delete_index("chaturl")
 # Pinecone
 api_key = os.environ['PINECONE_API_KEY']
 pinecone.init(api_key=api_key, environment="us-east1-gcp")
