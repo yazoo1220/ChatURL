@@ -6,6 +6,8 @@ import os
 from langchain.chains import ConversationChain
 from langchain.llms import OpenAI
 
+pinecone.delete_index("chaturl")
+
 st.set_page_config(page_title="ChatURL", page_icon=":robot:")
 st.header("▶️ ChatURL")
 if "generated" not in st.session_state:
