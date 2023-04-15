@@ -65,7 +65,7 @@ def get_text(prompt):
 user_input = get_text("この記事の要点を3つにまとめてください")
 additional_prompt = "あなたは優秀な解説者です。丁寧かつフレンドリー、わかりやすい言葉で受け答えしてください。回答は相手の言葉と同じものでお願いします。"
 
-from llama_index import GPTPineconeIndex, ServiceContext, PromptHelper
+from llama_index import GPTPineconeIndex, ServiceContext, PromptHelper, GPTSimpleVectorIndex
 
 max_input_size = 3000
 num_output = 1000
@@ -83,19 +83,19 @@ service_context = ServiceContext.from_defaults(prompt_helper=prompt_helper)
 
 
 # Pinecone
-api_key = os.environ['PINECONE_API_KEY']
-pinecone.init(api_key=api_key, environment="us-east1-gcp")
-pinecone.create_index("chaturl", dimension=1536, metric="euclidean", pod_type="p1")
-pinecone_index = pinecone.Index("chaturl")
+# api_key = os.environ['PINECONE_API_KEY']
+# pinecone.init(api_key=api_key, environment="us-east1-gcp")
+# pinecone.create_index("chaturl", dimension=1536, metric="euclidean", pod_type="p1")
+# pinecone_index = pinecone.Index("chaturl")
 
 if url:
     # img = webshot.url(url)
     # st.image(img)
     documents = loader.load_data(urls=[url])
     ask_button = st.button('ask')
-    index = GPTPineconeIndex.from_documents(
+    index = GPTSimpleVectorIndex.from_documents(
         documents, 
-        pinecone_index=pinecone_index,
+       # pinecone_index=pinecone_index,
         service_context=service_context)
 else:
     st.write('please paste url') 
