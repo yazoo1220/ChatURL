@@ -41,7 +41,7 @@ if os.environ['OPENAI_API_KEY']!="":
 else:
     st.write("waiting for api token...")
 
-from llama_index import download_loader,GPTSimpleVectorIndex
+from llama_index import download_loader
 
 BeautifulSoupWebReader = download_loader("BeautifulSoupWebReader")
 
@@ -54,26 +54,43 @@ import webshot
 # webshot.config.screenshot_path = '/path/to/save/screenshot'
 ask_button = False
 
-if url:
-    # img = webshot.url(url)
-    # st.image(img)
-    documents = loader.load_data(urls=[url])
-    ask_button = st.button('ask')
-    index = GPTSimpleVectorIndex.from_documents(documents)
-else:
-    st.write('please paste url') 
-
-
 def get_text(prompt):
     input_text = st.text_input("You: ", prompt, key="input")
     return input_text
 
 
 user_input = get_text("この記事の要点を3つにまとめてください")
+additional_prompt = "あなたは優秀な解説者です。丁寧かつフレンドリー、わかりやすい言葉で受け答えしてください。回答は相手の言葉と同じものでお願いします。"
+
+from llama_index import BaseGPTIndex, ServiceContext, PromptHelper
+
+max_input_size = 3000
+num_output = 1000
+chunk_size_limit = 1000
+max_chunk_overlap = 20
+
+prompt_helper = PromptHelper(
+    max_input_size=max_input_size,
+    num_output=num_output,
+    max_chunk_overlap=max_chunk_overlap,
+    chunk_size_limit=chunk_size_limit
+)
+
+service_context = ServiceContext.from_defaults(prompt_helper=prompt_helper)
+
+if url:
+    # img = webshot.url(url)
+    # st.image(img)
+    documents = loader.load_data(urls=[url])
+    ask_button = st.button('ask')
+    index = BaseGPTIndex(service_context=service_context, documents=documents)
+else:
+    st.write('please paste url') 
+
 
 if ask_button:
     with st.spinner('typing...'):
-        output = index.query(user_input)
+        output = index.query(additional_prompt + user_input)
         st.session_state.past.append(user_input)
         st.session_state.generated.append(output.response)
 else:
