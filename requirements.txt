@@ -6,3 +6,4 @@ webshot
 pinecone-client
 transformers
 pdfminer
+pexpect
